@@ -5,12 +5,46 @@ import marked from "marked";
 
 document.body.classList.add("background");
 
-const placeholder =
-  "Main Heading\n=======\r\n\r\nSub-heading\r\n-----------\r\n\r\n`<div>code block</div>`\r\n\r\nParagraphs are separated\r\nby a blank line.\r\n\r\nLeave 2 spaces at the end of a line to do a\r\nline break\r\n\r\nText attributes *italic*, **bold**,\r\n`monospace`, ~~strikethrough~~ .\r\n >Here is a block quote\n\r\nFavorite Movies:\r\n\r\n  * Dracula\r\n  * The Godfather\r\n  * Shallow Hal\r\n\r\n![uncle sam](https://i.pinimg.com/600x315/0a/09/a9/0a09a9716a4d1b1154bd9a9f1c7e3add.jpg) \n\n\n\nContact me here: *[Dillon Kelley](https://github.com/digthedill)*";
+const stock = `# Heading
+
+## Sub-heading...
+### Super-Sub-Heading
+  
+Try out some code:, \`<div></div>\`, use 2 backticks.
+
+\`\`\`
+// write out a function:
+
+const coronaVirus = (sucks, alot) => {
+  if (sucks == '\`\`\`' && alot == '\`\`\`') {
+    return vacinePlease;
+  }
+}
+\`\`\`
+ **bold**
+_italic_
+**bold and italic!_**
+~~strikeout!~~.
+> Block Quotes!
+- Make a list.
+  - Some with bulleted.
+     - With different indentation levels.
+        - That look like this.
+
+1. Chocolate
+1. Vanilla
+1. Strawberry
+
+
+![uncle sam](https://i.pinimg.com/600x315/0a/09/a9/0a09a9716a4d1b1154bd9a9f1c7e3add.jpg)
+
+Drop a line: *[Dillon Kelley](https://github.com/digthedill)*
+
+`;
 
 class Markdown extends Component {
   state = {
-    text: placeholder,
+    text: stock,
   };
   handleChange = (e) => {
     this.setState({
@@ -30,25 +64,24 @@ class Markdown extends Component {
   }
 
   render() {
-    // marked.setOptions({
-    //   gfm: true,
-    // });
+    marked.setOptions({
+      breaks: true,
+    });
     return (
       <div className="container">
         <div className="row">
           <div className="input col-md">
-            <h3>Parse your thoughts:</h3>
+            <h3>Practice Github Flavored Markdown</h3>
             <p>
-              As you'll see below, you can take your raw gfm and watch it breath
-              life through the complier reight here in the browser! These are
-              truly exciting times.
+              Use the below code as a guide to help you practice github flavored
+              markdown (gfm) syntax. Gfm is a valuable scripting syntax that is
+              essential for developers who want their voice to be heard.
             </p>
             <form className="form-group ">
               <textarea
                 className="form-control form-control-md"
                 id="editor"
                 type="text"
-                spellCheck="false"
                 value={this.state.text}
                 onChange={this.handleChange}
               />
@@ -63,6 +96,7 @@ class Markdown extends Component {
           <div className="col-md" id="preview">
             <div
               className="complier"
+              id="preview"
               dangerouslySetInnerHTML={this.createMarkup()}
             />
           </div>

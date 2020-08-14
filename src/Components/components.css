@@ -19,7 +19,10 @@
 }
 
 .header {
-  margin-top: 5rem;
+  margin-top: 2rem;
   margin-bottom: 4rem;
-  background-color: royalblue;
+  background-color: rgb(122, 153, 248);
+  font-family: monospace;
+  font-size: 3rem;
+  padding: 1rem 1rem;
 }
